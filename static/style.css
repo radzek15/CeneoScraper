@@ -4,11 +4,13 @@ body {
     background-color: #060f47;
 }
 p ,h1, h2, h3, h4, h5, h6 {
-    color: #e6e219;
+    color: #e6e22a;
+}
+
+.custom-bg {
+    background-color: #063e47;
 }
 
 .home-table {
-     {
-        color: #e6e219;
-    }
+    color: #e6e219;
 }
