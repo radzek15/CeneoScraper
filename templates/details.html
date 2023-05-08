@@ -14,7 +14,6 @@
 
 <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
 </head>
-
 <body>
 <div class="container">
  <nav class="navbar navbar-expand-sm navbar-light justify-content-center">
@@ -30,26 +29,10 @@
     </li>
   </ul>
 </nav>
-    {% if error %}
-
-    <div class="alert alert-danger" role="alert">{{ error }}</div>
-
-    {% endif %}
-    <div class="row mt-5">
-      <div class="col-md-4"></div>
-      <div class="col-md-4">
-        <form action="/extract" method="GET">
-          <div class="form-group">
-            <label for="id" class="mb-3 text-light">Enter product id </label>
-            <input type="text" class="form-control" placeholder="Enter product id" id="id" name="product_id" />
-          </div>
-
-          <button type="submit" class="btn btn-primary mt-3">Submit</button>
-        </form>
-      </div>
-      <div class="col-md-4"></div>
-    </div>
-
 </div>
+
+<h1 class="text-light mt-3">{{ product_name }}</h1>
+
+
 </body>
 </html>

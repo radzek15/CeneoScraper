@@ -19,9 +19,9 @@ def _product():
     try:
         scrap = Scraper(p_id)
         Store().add_product(p_id, scrap.get_product_name(), scrap.get_all_opinions())
-        stats = Store().set_stats(p_id, Store.calculate_stats(scrap.get_all_opinions()))
+        Store().set_stats(p_id, Store.calculate_stats(scrap.get_all_opinions()))
 
-        with open(file='./static/' + p_id + '.json', mode='w') as f:
+        with open(file=f'./static/{p_id}.json', mode='w') as f:
             jsonpickle.set_encoder_options('json', indent=2)
             f.write(jsonpickle.encode(scrap.get_all_opinions()))
 
@@ -30,8 +30,15 @@ def _product():
                                reviews_number=len(scrap.get_all_opinions()))
     except Exception as e:
         print("Error: ", e)
-        return render_template('extract.html', error=e)
+        return render_template('extract.html', error=str(e))
 
+@app.route(rule='/product', methods=['GET'])
+def opinion():
+    return render_template('product.html', error="Wrong product ID!")
+
+@app.route(rule='/all_products', methods=['GET'])
+def product_list():
+    return render_template('all_products.html', products=Store().get_all_products())
 
 if __name__ == '__main__':
     app.run(debug=True)
