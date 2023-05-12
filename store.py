@@ -1,18 +1,15 @@
-from statistics import mean
-
-
 class Store:
     def __init__(self):
         self.store = {}
 
-    def add_product(self, p_id, name, opinions):
-        self.store[p_id] = {"ID": p_id, "name": name, "opinions": opinions, 'stats': {}}
+    def add_product(self, product_id, name, opinions):
+        self.store[product_id] = {"ID": product_id, "name": name, "opinions": opinions, 'stats': {}}
 
-    def get_product(self, p_id):
-        return self.store[p_id]
+    def get_product(self, product_id):
+        return self.store[product_id]
 
-    def get_product_name(self, p_id):
-        return self.store[p_id]["name"]
+    def get_product_name(self, product_id):
+        return self.store[product_id]["name"]
 
     def get_all_products(self):
         return [i for i in self.store.values()]
@@ -20,14 +17,14 @@ class Store:
     def get_all_opinions(self):
         return [i['opinions'] for i in self.store.values()]
 
-    def get_product_opinions(self, p_id):
-        return self.store[p_id]["opinions"]
+    def get_product_opinions(self, product_id):
+        return self.store[product_id]["opinions"]
 
-    def set_stats(self, p_id, stats):
-        self.store[p_id]["stats"] = stats
+    def set_stats(self, product_id, stats):
+        self.store[product_id]["stats"] = stats
 
-    def get_stats(self, p_id):
-        return self.store[p_id]["stats"]
+    def get_stats(self, product_id):
+        return self.store[product_id]["stats"]
 
 # static methods
     @staticmethod

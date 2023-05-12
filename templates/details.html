@@ -25,14 +25,109 @@
       <a class="nav-link text-warning" href="/extract">Extract opinions</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link text-warning" href="/products">Products</a>
+      <a class="nav-link text-warning" href="/all_products">Products</a>
     </li>
   </ul>
 </nav>
-</div>
+
 
 <h1 class="text-light mt-3">{{ product_name }}</h1>
 
+    <a href="/product?product_id={{ id }}" class="btn btn-primary mt-3">Go back</a>
 
+    <canvas id="myChart" width="700" height="700"></canvas>
+    <canvas id="myChart2" width="1400" height="700"></canvas>
+</div>
+
+  <script>
+    let product_data = "{{ product_data }}";
+    product_data = extractDataFromFlask(product_data);
+    let score = "{{ rating }}";
+    score = extractDataFromFlask(score);
+    const labels = Object.keys(product_data).map(name =>
+      name.replace("_", " ")
+    );
+    const dataValues = Object.values(product_data);
+    const data = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Dataset 1",
+          data: dataValues,
+          backgroundColor: ["#36A2EB", "#FF6384"],
+        },
+      ],
+    };
+    const config = {
+      type: "pie",
+      data,
+      options: {
+        borderColor: "#000",
+        responsive: false,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Recommendations",
+          },
+        },
+      },
+    };
+    const myChart = new Chart(document.getElementById("myChart"), config);
+    const barSortedData = Object.entries(score).sort((a, b) =>
+      a[0] > b[0] ? 1 : -1
+    );
+    const data2 = {
+      labels: barSortedData.map(x => x[0]),
+      datasets: [
+        {
+          label: "Product rating",
+          backgroundColor: [
+            "#FF0000",
+            "#FF3300",
+            "#ff6600",
+            "#ff9900",
+            "#FFCC00",
+            "#FFFF00",
+            "#ccff00",
+            "#99ff00",
+            "#33ff00",
+            "#00FF00",
+          ],
+          data: barSortedData.map(x => x[1]),
+        },
+      ],
+    };
+    const config2 = {
+      type: "bar",
+      data: data2,
+      backgroundColor: "rgba(0, 0, 0, 0.1)",
+      options: {
+        responsive: false,
+        plugins: {
+          legend: {
+            position: "top",
+          },
+          title: {
+            display: true,
+            text: "Stars",
+          },
+        },
+      },
+    };
+    const myChart2 = new Chart(document.getElementById("myChart2"), config2);
+    function extractDataFromFlask(data) {
+      return JSON.parse(
+        data
+          .replace(/&#39;/gm, '"')
+          .replace(/True/gm, "true")
+          .replace(/False/gm, "false")
+          .replace(/None/gm, "null")
+          .replace(/\n/gm, "")
+      );
+    }
+  </script>
 </body>
 </html>
