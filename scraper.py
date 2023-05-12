@@ -83,6 +83,3 @@ class Scraper:
                    }
 
         return details
-
-# scraper = Scraper('117369926;02514')
-# print(scraper.get_all_opinions())
