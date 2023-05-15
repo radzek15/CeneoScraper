@@ -43,7 +43,7 @@ class Scraper:
             raise Exception("Product with this ID does not exist!")
 
         opinion_number = int(re.search(r'\d+', elements[2].text if
-        re.search(r'\d+', elements[2].text) else "0").group())
+                             re.search(r'\d+', elements[2].text) else "0").group())
         if opinion_number > 500:
             raise Exception("This Product has too many opinions, enter a different product id")
 
@@ -61,7 +61,6 @@ class Scraper:
     def remove_empty(self, user_reviews):
         return [self.get_details(i) for i in user_reviews if
                 self.get_details(i)["author"] is not None and self.get_details(i)["score"] is not None]
-
 
     @staticmethod
     def get_details(review):

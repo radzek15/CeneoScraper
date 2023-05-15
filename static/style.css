@@ -11,6 +11,39 @@ p ,h1, h2, h3, h4, h5, h6 {
     background-color: #063e47;
 }
 
+.custom-color {
+  color: blue;
+}
+
+.custom-list {
+    list-style-type: disc;
+}
+
+.custom-list li {
+    color: blue;
+}
+
 .home-table {
     color: #e6e219;
+}
+
+.analytics {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.badges img {
+    margin-top: 35px;
+}
+
+.card-body,
+.card {
+    background-color: #1b232c;
+    border-radius: 5%;
+}
+
+.custom-icon{
+    position: absolute;
+    font-size: 3rem;
+    right: 15px;
 }

@@ -7,12 +7,36 @@
     <title>Radomir Piatkwoski</title>
 <!-- Latest compiled and minified CSS -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css" />
 
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<script src="//code.jquery.com/jquery.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.10.1/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
 
 <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+    <style>
+    div.dataTables_wrapper {
+      width: 1500px;
+      margin: 0 auto;
+    }
+    td {
+      background-color: #444444;
+      color: #62f025;
+    }
+    th {
+      color: #FFFFFF;
+      font-weight: 500;
+    }
+    label, select, input, #example_info {
+      color: #FFFFFF;
+    }
+    option {
+      background-color: #FFFFFF;
+    }
+  </style>
+
 </head>
 <body>
 <div class="container">
@@ -62,8 +86,8 @@
               <td>{{review.score}}</td>
               <td>{{review.likes}}</td>
               <td>{{review.dislikes}}</td>
-              <td>{{review.pros}}</td>
-              <td>{{review.cons}}</td>
+              <td>{{review.pros|join(', ')}}</td>
+              <td>{{review.cons|join(', ')}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -95,15 +119,13 @@
     </div>
   </main>
 
-  <script type="text/javascript">
-  // Wait for the DOM to load before executing the script
-  document.addEventListener("DOMContentLoaded", function() {
-
-  // Initialize the DataTables plugin on the table with the ID "example"
-  $('#example').DataTable();
-
-});
-  </script>
+<script>
+  $(document).ready(function () {
+    $('#example').DataTable({
+      scrollX: true
+    });
+  });
+</script>
 
 </body>
 </html>

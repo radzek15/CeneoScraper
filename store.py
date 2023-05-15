@@ -42,8 +42,8 @@ class Store:
     @staticmethod
     def calculate_stats(reviews):
         stats = {'opinion_number': len(reviews),
-                 'pros_number': [review['pros'] for review in reviews],
-                 'cons_number': [review['cons'] for review in reviews],
+                 'pros': [review['pros'] for review in reviews],
+                 'cons': [review['cons'] for review in reviews],
                  'mean': round(sum(float(review['score'].split('/')[0].replace(',', '.')) for review in reviews) / len(reviews), 2)
                  }
         return stats
