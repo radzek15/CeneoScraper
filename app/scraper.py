@@ -1,7 +1,8 @@
-from bs4 import BeautifulSoup
-import requests
-import re
 import math
+import re
+
+import requests
+from bs4 import BeautifulSoup
 
 
 def get_element_value(review, tag, attribute):

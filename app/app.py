@@ -1,7 +1,8 @@
-from scraper import Scraper
-from flask import Flask, render_template, request
-from store import Store
 import jsonpickle
+from flask import Flask, render_template, request
+
+from scraper import Scraper
+from store import Store
 
 app = Flask(__name__, template_folder="templates")
 
@@ -23,16 +24,16 @@ def _product():
         app_store.add_product(product_id, scrap.get_product_name(), scrap.get_all_opinions())
         app_store.set_stats(product_id, Store.calculate_stats(scrap.get_all_opinions()))
 
-        with open(file=f'./static/{product_id}.json', mode='w') as f:
+        with open(file=f'./static/{product_id}.json', mode='w', encoding='utf-8') as file:
             jsonpickle.set_encoder_options('json', indent=2)
-            f.write(jsonpickle.encode(scrap.get_all_opinions()))
+            file.write(jsonpickle.encode(scrap.get_all_opinions()))
 
         return render_template('product.jinja', reviews=scrap.get_all_opinions(),
                                product_id=product_id, json=jsonpickle.encode(scrap.get_all_opinions()),
                                reviews_number=len(scrap.get_all_opinions()))
-    except Exception as e:
-        print("Error: ", e)
-        return render_template('extract.jinja', error=str(e))
+    except Exception as err:
+        print("Error: ", err)
+        return render_template('extract.jinja', error=str(err))
 
 
 @app.route(rule='/product', methods=['GET'])

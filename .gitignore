@@ -197,3 +197,11 @@ fabric.properties
 
 # mypy
 .mypy_cache/
+
+#pytest
+.pytest_cache
+
+#tests
+tests
+*_test.py
+test_*.py
