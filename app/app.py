@@ -24,7 +24,7 @@ def _product():
         app_store.add_product(product_id, scrap.get_product_name(), scrap.get_all_opinions())
         app_store.set_stats(product_id, Store.calculate_stats(scrap.get_all_opinions()))
 
-        with open(file=f'./static/{product_id}.json', mode='w', encoding='utf-8') as file:
+        with open(file=f'./app/static/{product_id}.json', mode='w', encoding='utf-8') as file:
             jsonpickle.set_encoder_options('json', indent=2)
             file.write(jsonpickle.encode(scrap.get_all_opinions()))
 
