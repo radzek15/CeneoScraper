@@ -28,6 +28,8 @@
    * Pytest and selenium will be available soon.
 <h4 align=center>Demo Usage<h4>
 
+https://github.com/radzek15/CeneoScraper/assets/79796741/8d4b6d5f-46e5-4f2d-837f-2445b480ec1b
+
 ## Tech Stack
    * Python3
    * Flask
